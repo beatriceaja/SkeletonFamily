@@ -1,0 +1,99 @@
+import pygame
+import random
+
+# Initialize Pygame
+pygame.init()
+
+# Set up the window dimensions
+width = 800
+height = 600
+window = pygame.display.set_mode((width, height))
+pygame.display.set_caption("Skeleton Family Dinner")
+
+# Load images
+background_img = pygame.image.load("background.jpg")
+skeleton_img = pygame.image.load("skeleton.png")
+blood_img = pygame.image.load("blood.png")
+pig_img = pygame.image.load("pig.png")
+
+# Skeleton family class
+class SkeletonFamily:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def draw(self):
+        window.blit(skeleton_img, (self.x, self.y))
+
+# Dead pig class
+class DeadPig:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def draw(self):
+        window.blit(pig_img, (self.x, self.y))
+
+# Blood class
+class Blood:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def draw(self):
+        window.blit(blood_img, (self.x, self.y))
+
+# Create skeleton family
+skeletons = []
+for _ in range(4):
+    x = random.randint(50, width - 100)
+    y = random.randint(50, height - 100)
+    skeleton = SkeletonFamily(x, y)
+    skeletons.append(skeleton)
+
+# Create dead pigs
+pigs = []
+for _ in range(6):
+    x = random.randint(50, width - 100)
+    y = random.randint(50, height - 100)
+    pig = DeadPig(x, y)
+    pigs.append(pig)
+
+# Create blood splatters
+blood_splatters = []
+for _ in range(10):
+    x = random.randint(50, width - 100)
+    y = random.randint(50, height - 100)
+    blood = Blood(x, y)
+    blood_splatters.append(blood)
+
+# Animation loop
+running = True
+clock = pygame.time.Clock()
+while running:
+    # Handle events
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    # Clear the window
+    window.blit(background_img, (0, 0))
+
+    # Draw the skeletons
+    for skeleton in skeletons:
+        skeleton.draw()
+
+    # Draw the dead pigs
+    for pig in pigs:
+        pig.draw()
+
+    # Draw the blood splatters
+    for blood in blood_splatters:
+        blood.draw()
+
+    # Update the display
+    pygame.display.update()
+    clock.tick(60)
+
+# Quit the game
+pygame.quit()

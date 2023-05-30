@@ -2,7 +2,7 @@
 
 side note for later: provide the background image (background.jpg), skeleton image (skeleton.png), blood image (blood.png), and pig image (pig.png). Make sure to have these image files in the same directory as the Python script.
 
-the images used in this example should be prepared in advance, 
+the images used in this example should be prepared in advance,
 
 ******the content described may not be suitable for all audiences.**********
 
